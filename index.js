@@ -9,10 +9,29 @@ function formatQueryParasms(parasms){
     return queryItems.join('&');
 }
 
-function getInfos(query, limit){
+function displayResults(responseJson){
+    console.log(responseJson);
+    $('#results-list').empty();
+
+  //for(let i=0; i<responseJson.Similar.length; i++){
+        $('#results-list').append(
+    `<div>
+         <p>${responseJson.Similar.Info}</p>
+         <p>${responseJson.Similar.Results}</p>             
+    </div>
+        `
+      )
+  // };
+
+    $('#results').removeClass('hidden');
+}
+
+function getInfos(query,limit){
     const parasms = {
         k:apiKey,
         q:query,limit,
+        info:1,
+        
         
     }
 
@@ -26,7 +45,7 @@ function getInfos(query, limit){
          }
          throw new Error(response.statusText);
      })
-     .then(responseJson => console.log(responseJson))
+     .then(responseJson => displayResults(responseJson))
      .catch(err => {
          $('#js-error-message').text(`Something went wrong: ${err.message}`);
      });
