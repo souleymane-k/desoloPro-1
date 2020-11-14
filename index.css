@@ -23,6 +23,9 @@ h1{
     color:white;
     cursor:pointer;
 }
+.colorKo{
+    background-color:green;
+}
 
 /*
 #imgView{

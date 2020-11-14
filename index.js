@@ -12,12 +12,16 @@ function formatQueryParasms(parasms){
 function displayResults(responseJson){
     console.log(responseJson);
     $('#results-list').empty();
-
+    
   for(let i=0; i<responseJson.Similar.Results.length; i++){
         $('#results-list').append(
-    `<li>
-         <p>${responseJson.Similar.Results[i].name}</p>
-                     
+    `<li class="colorKo">
+    <hr>
+         <p>${responseJson.Similar.Results[i].Name}</p>
+         <p>${responseJson.Similar.Results[i].Type}</p>
+         <p>${responseJson.Similar.Results[i].wTeaser}</p>
+         <a href="${responseJson.Similar.Results[i].wUrl}">${responseJson.Similar.Results[i].wUrl}</a> <br> 
+         <a href="${responseJson.Similar.Results[i].yUrl}">YouTube Video</a>
     </li>
         `
       )
@@ -26,11 +30,11 @@ function displayResults(responseJson){
     $('#results').removeClass('hidden');
 }
 
-function getInfos(query, Results,limit){
+function getInfos(query,limit){
     const parasms = {
         k:apiKey,
         q:query,limit,
-        part:Results,
+        /*part:Results,*/
         info:1
         
         
