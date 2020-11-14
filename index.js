@@ -13,24 +13,25 @@ function displayResults(responseJson){
     console.log(responseJson);
     $('#results-list').empty();
 
-  //for(let i=0; i<responseJson.Similar.length; i++){
+  for(let i=0; i<responseJson.Similar.Results.length; i++){
         $('#results-list').append(
-    `<div>
-         <p>${responseJson.Similar.Info}</p>
-         <p>${responseJson.Similar.Results}</p>             
-    </div>
+    `<li>
+         <p>${responseJson.Similar.Results[i].name}</p>
+                     
+    </li>
         `
       )
-  // };
+   };
 
     $('#results').removeClass('hidden');
 }
 
-function getInfos(query,limit){
+function getInfos(query, Results,limit){
     const parasms = {
         k:apiKey,
         q:query,limit,
-        info:1,
+        part:Results,
+        info:1
         
         
     }
